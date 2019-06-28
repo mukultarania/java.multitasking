@@ -1,39 +1,34 @@
-
-class Stop implements Runnable {
-    public void run() {
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Hii");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}
-
-class Go implements Runnable {
-    public void run() {
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Hello");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}
-
 public class UsingRunnable {
-    public static void main(String[] a) {
-        Runnable go = new Go();
-        Runnable stop = new Stop();
+    public static void main(String[] a) throws InterruptedException {
 
-        Thread t1 = new Thread(go);
-        Thread t2 = new Thread(stop);
+        //Lambda Expression () - >
+        Thread t1 = new Thread(() -> {           //Using Inner Class
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Hello");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("hi");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         t1.start();
         t2.start();
+
+        t1.join();// Join to check is thread joined
+        t2.join();
+
+        System.out.println("Is thread alive :" + (t1.isAlive() && t2.isAlive()));
     }
 
 }
