@@ -1,3 +1,4 @@
+
 class Hi extends Thread{
     public void run(){
         for(int i = 0; i <5; i++){
@@ -24,7 +25,7 @@ class Hello extends Thread{
     }
 }
 
-public class Multi {
+public class UsingThreadClass {
     public static void main(String[] a){
         Hi hi = new Hi();
         Hello hello = new Hello();
