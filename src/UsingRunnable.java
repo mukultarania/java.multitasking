@@ -25,9 +25,8 @@ public class UsingRunnable {
         t1.start();
         t2.start();
 
-        t1.join();// Join to check is thread joined
+        t1.join();  // Join to check is thread joined
         t2.join();
-
         System.out.println("Is thread alive :" + (t1.isAlive() && t2.isAlive()));
     }
 
